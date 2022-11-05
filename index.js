@@ -10,7 +10,7 @@ window.onload=()=>{
     {
         console.log('dasd');
         let tasks=JSON.parse(localStorage.getItem('tasks'))
-        displaytasks(tasks);
+        displaytasks();
     }
 
 }
@@ -49,15 +49,15 @@ function addtask()
     }
     else{
         localStorage.setItem('tasks',JSON.stringify([...JSON.parse(localStorage.getItem('tasks')),{'task':enteredtask}]))
-        displaytasks(tasks)
     }
 }
-
-function displaytasks(tasks){
+window.onchange=displaytasks;
+function displaytasks(){
     let addtaskdom=document.querySelector(".display");
+    let tasks=JSON.parse(localStorage.getItem('tasks'))
     tasks.forEach(task => {
         console.log(task.task)
-        addtaskdom.innerHTML=`<li><span class="displaytask">${task.task}</span>
+        addtaskdom.innerHTML+=`<li><span class="displaytask">${task.task}</span>
         <span class="delete" onclick="delete(this)">Delete</span></li>`
     });
 
