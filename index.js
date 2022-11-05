@@ -1,65 +1,65 @@
 window.onload=()=>{
-    let getname= localStorage.getItem('username') || '';
-    if(getname.length!=0)
+    let getnamels=localStorage.getItem('username') || [];
+    if(getnamels.length!=0)
     {
-        changenamedom();
+        changenamedom(getnamels); 
+    }
+    let task=localStorage.getItem('tasks')
+    console.log(task)
+    if(task!=null)
+    {
+        console.log('dasd');
+        let tasks=JSON.parse(localStorage.getItem('tasks'))
+        displaytasks(tasks);
     }
 
-    let tasks= JSON.parse(localStorage.getItem('task')) || [];
-    if(tasks.length!=0)
-    {
-        display(tasks);
-    }
-    
 }
-
 let getinnername=document.querySelector(".input");
-let displayhtml=document.querySelector("ul").innerHTML;
-function addname(){
-    getname=document.querySelector("#name");
-    if(getname.value.length==0)
-    {
-        alert("Enter name");
-    }
-    else{
-        localStorage.setItem('username',getname.value);
-        getinnername.innerHTML=`<span class="greeting">
-        Hey!! <span class="nameis">${getname.value}</span>
-    </span>`;
-    }
-}   
-
-function changenamedom()
+function changenamedom(getnamels)
 {
-    let getnamels=localStorage.getItem("username");
     getinnername.innerHTML=`<span class="greeting">
         Hey!! <span class="nameis">${getnamels.toUpperCase()}</span>
     </span>`;
 }
 
-function display(tasks)
+function addname()
 {
-    tasks.forEach(task => {
-        displayhtml+=`<li>${task.task}</li>`
-    });
-}
-
-function addtask(){
-    let taskentered=document.querySelector("#enteredtask")
-    if(taskentered.value.length==0){
-        alert("Please enter task")
-    }
-    let tasks= JSON.parse(localStorage.getItem('task')) || [];
-    console.log(tasks.length);
-    if(tasks.length==0){
-        localStorage.setItem('task',taskentered.value)
-    }
-    else
+    let getnameinput=document.querySelector("#name").value;
+    console.log(getinnername,'s')
+    if(getnameinput.length==0)
     {
-        console.log('else');
-    localStorage.setItem('task',JSON.stringify([JSON.parse(localStorage.getItem('task')),{'task':taskentered.value}]))
-}
-    
+        alert("please enter name");
+    }
+    else{
+        localStorage.setItem("username",getnameinput);
+        getinnername.innerHTML=`<span class="greeting">
+        Hey!! <span class="nameis">${getnameinput.toUpperCase()}</span>
+    </span>`;
+    }
+
 }
 
-        
+function addtask()
+{
+    let enteredtask=document.querySelector("#enteredtask").value;
+    let tasks=JSON.parse(localStorage.getItem('tasks'));
+    console.log(tasks)
+    if(tasks==null){
+        localStorage.setItem('tasks',JSON.stringify([{'task':enteredtask}]));
+    }
+    else{
+        localStorage.setItem('tasks',JSON.stringify([...JSON.parse(localStorage.getItem('tasks')),{'task':enteredtask}]))
+        displaytasks(tasks)
+    }
+}
+
+function displaytasks(tasks){
+    let addtaskdom=document.querySelector(".display");
+    tasks.forEach(task => {
+        console.log(task.task)
+        addtaskdom.innerHTML=`<li><span class="displaytask">${task.task}</span>
+        <span class="delete" onclick="delete(this)">Delete</span></li>`
+    });
+
+}
+
