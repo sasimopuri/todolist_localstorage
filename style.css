@@ -69,13 +69,38 @@ body{
     column-gap: 10px;
 }
 
+.containertodo{
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+@media screen and (min-width:500px) {
+    .containertodo{
+        display: flex;
+        justify-content: center;
+        align-items: center ;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 85px;
+    }
+
+    .tododisplay    {
+        min-width: 80%;
+    }
+    .list{
+        font-size: 25px;
+        font-weight: 700;
+    }
+}
+
 .tododisplay{
-    width: 50%;
-    margin: auto;
+   
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    padding-right: 50px;
     
     
 }
@@ -98,12 +123,12 @@ body{
     background-color: #EFF5F5;
     min-width: 100%;
     margin: 5px;
-    padding: 15px;
-    font-size: 25px;
-    font-weight: 500;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 400;
     border-radius: 20px;
-    padding-left: 22px;
-    box-shadow: 2px 2px 2px 2px #78C4D4;
+    padding-left: 10px;
+    box-shadow: 2px 2px 2px 1px #78C4D4;    
 }
 .checked{
     text-decoration: line-through;
