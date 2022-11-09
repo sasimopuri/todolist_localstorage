@@ -56,16 +56,65 @@ function addtask()
 }
 
 function changetaskdom(newtask){
-    var taskliid='taskli'+newtask.taskid;
-    let taskid='task'+newtask.taskid;
-    ultag.innerHTML+=`<li class="${taskliid} list" style="margin-top:10px">
-    <input type="checkbox" name="${taskid}" id="${'checkbox'+taskid}" class="checkbox"  onclick="changechecklist(taskid)">
-    <label for="${taskid}" class="${taskid}">${newtask.task}</label>
-</li>`
+    let taskliid="taskli"+newtask.taskid;
+    let taskli=document.createElement("li");
+    let taskid=newtask.taskid;
+    taskli.id=taskliid;
+    taskli.classList.add('list')
+    ultag.appendChild(taskli);
+
+    let checkbox=document.createElement("input");
+    checkbox.type="checkbox";
+    checkbox.classList.add("checkbox")
+    let checkboxid='checkbox'+newtask.taskid;
+    checkbox.id=checkboxid;
+    taskli.appendChild(checkbox);
+    
+
+    let label=document.createElement("label");
+    label.setAttribute("for",'checkbox'+newtask.taskid);
+    let labelid='label'+newtask.taskid;
+    label.id=labelid;
+    label.classList.add('label')
+    label.textContent=newtask.task;
+    taskli.appendChild(label)
+    if(newtask.checkedtask)
+    {
+        label.classList.add("checked");
+        checkbox.checked=true
+    }
+    checkbox.onclick=()=>{changechecklist(labelid,taskid)}
+
+//     ultag.innerHTML+=`<li class="${taskliid} list" id="taskli+uniqueid">
+//     <input type="checkbox" id="${'checkbox'+uniqueid}" class="checkbox">
+//     <label for="${taskid}" class="label">${newtask.task}</label>
+// </li>`
 
 }
 
-function changechecklist(s)
+function changechecklist(labelid,taskid)
 {
-    console.log(s);
+    let litag=document.getElementById(labelid);
+    litag.classList.toggle("checked")
+    let taskindex=tasks.findIndex((task)=>
+    {
+        if(task.taskid==taskid){
+            return true
+        }
+        else{
+            return false
+        }
+    })
+    let selectedtask= tasks[taskindex];
+    if(selectedtask.checkedtask===false){
+        selectedtask.checkedtask=true;
+    }
+    else{
+        selectedtask.checkedtask=false;
+    }
+    tasks[taskindex]=selectedtask;
+    console.log(tasks)
+    // localStorage.removeItem(tasks)
+    localStorage.setItem('task',JSON.stringify(tasks))
+    
 }

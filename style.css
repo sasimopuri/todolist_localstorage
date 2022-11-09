@@ -82,9 +82,15 @@ body{
     width: 18px;
     height: 18px;
 }
+
+
 .list{
     display: flex;
     column-gap: 10px;
     font-size: 20px;
     align-items: center;
+}
+.checked{
+    text-decoration: line-through;
+        
 }
