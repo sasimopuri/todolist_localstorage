@@ -142,4 +142,5 @@ function ondelete(taskid){
         }
     });
     tasks.splice(deleteElementIndex, 1);
+    localStorage.setItem(task,JSON.stringify(tasks));
 }
