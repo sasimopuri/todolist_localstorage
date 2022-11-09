@@ -135,12 +135,12 @@ function ondelete(taskid){
 
     let deleteElementIndex = tasks.findIndex(function(eachTodo) {
         let eachTodoId = "task" + eachTodo.taskid;
-        if (eachTodoId === todoId) {
+        if (eachTodoId === taskid) {
             return true;
         } else {
             return false;
         }
     });
     tasks.splice(deleteElementIndex, 1);
-    localStorage.setItem(task,JSON.stringify(tasks));
+    localStorage.setItem('task',JSON.stringify(tasks));
 }
