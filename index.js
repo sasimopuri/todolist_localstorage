@@ -56,9 +56,16 @@ function addtask()
 }
 
 function changetaskdom(newtask){
-
-    ultag.innerHTML+=`<li class="${'taskli'+newtask.taskid} list" style="margin-top:10px">
-    <input type="checkbox" name="${'task'+newtask.taskid}" id="&{'checkbox'+taskid}" class="checkbox"><label for="${'task'+newtask.taskid}" class="${'task'+newtask.taskid}">${newtask.task}</label>
+    var taskliid='taskli'+newtask.taskid;
+    let taskid='task'+newtask.taskid;
+    ultag.innerHTML+=`<li class="${taskliid} list" style="margin-top:10px">
+    <input type="checkbox" name="${taskid}" id="${'checkbox'+taskid}" class="checkbox"  onclick="changechecklist(taskid)">
+    <label for="${taskid}" class="${taskid}">${newtask.task}</label>
 </li>`
 
+}
+
+function changechecklist(s)
+{
+    console.log(s);
 }
