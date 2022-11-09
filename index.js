@@ -1,65 +1,64 @@
+let namehtml=document.querySelector(".name");
+let taskinput=document.querySelector("#taskinput");
+let tasks = JSON.parse(localStorage.getItem('task')) || [];
+let ultag = document.querySelector('ul')
 window.onload=()=>{
-    let getnamels=localStorage.getItem('username') || [];
-    if(getnamels.length!=0)
-    {
-        changenamedom(getnamels); 
-    }
-    let task=localStorage.getItem('tasks')
-    console.log(task)
-    if(task!=null)
-    {
-        console.log('dasd');
-        let tasks=JSON.parse(localStorage.getItem('tasks'))
-        displaytasks();
+    let username = localStorage.getItem('username');
+    if(username!=null){
+        changenamedom(username);
     }
 
+    if(tasks!=null)
+    {
+        tasks.forEach(task => {
+            changetaskdom(task)
+        });
+        
+    }
 }
-let getinnername=document.querySelector(".input");
-function changenamedom(getnamels)
-{
-    getinnername.innerHTML=`<span class="greeting">
-        Hey!! <span class="nameis">${getnamels.toUpperCase()}</span>
-    </span>`;
-}
+
 
 function addname()
 {
-    let getnameinput=document.querySelector("#name").value;
-    console.log(getinnername,'s')
-    if(getnameinput.length==0)
+    let usernameentered=document.querySelector("#name").value;
+    if(usernameentered.length==0)
     {
-        alert("please enter name");
+        alert("Please enter your name");
     }
     else{
-        localStorage.setItem("username",getnameinput);
-        getinnername.innerHTML=`<span class="greeting">
-        Hey!! <span class="nameis">${getnameinput.toUpperCase()}</span>
-    </span>`;
+        localStorage.setItem('username',usernameentered);
+    changenamedom(usernameentered);
     }
+    
+}
 
+function changenamedom(username){
+    namehtml.innerHTML=`<span><h1>Hey!!</h1></span><span class="namels"><h1>${username.charAt(0).toUpperCase()+username.slice(1)}</h1></span>`
 }
 
 function addtask()
 {
-    let enteredtask=document.querySelector("#enteredtask").value;
-    let tasks=JSON.parse(localStorage.getItem('tasks'));
-    console.log(tasks)
-    if(tasks==null){
-        localStorage.setItem('tasks',JSON.stringify([{'task':enteredtask}]));
+    if(taskinput.value.length==0)
+    {
+        alert("Enter task")
     }
     else{
-        localStorage.setItem('tasks',JSON.stringify([...JSON.parse(localStorage.getItem('tasks')),{'task':enteredtask}]))
+        let taskid=tasks.length+1;
+        let checkedtask=false
+        let newtaskobj={'task':taskinput.value,'taskid':taskid,'checkedtask':checkedtask};
+         tasks.push(newtaskobj);
+         localStorage.removeItem('task');
+         console.log(tasks);
+         taskinput.value='';
+         localStorage.setItem('task',JSON.stringify(tasks));
+        changetaskdom(newtaskobj);
     }
 }
-window.onchange=displaytasks;
-function displaytasks(){
-    let addtaskdom=document.querySelector(".display");
-    let tasks=JSON.parse(localStorage.getItem('tasks'))
-    tasks.forEach(task => {
-        console.log(task.task)
-        addtaskdom.innerHTML+=`<li><span class="displaytask">${task.task}</span>
-        <span class="delete" onclick="delete(this)">Delete</span></li>`
-    });
+
+function changetaskdom(newtask){
+
+    ultag.innerHTML+=`<li class="${'taskli'+newtask.taskid} list" style="margin-top:10px">
+    <input type="checkbox" name="${'task'+newtask.taskid}" id="&{'checkbox'+taskid}" class="checkbox"><label for="${'task'+newtask.taskid}" class="${'task'+newtask.taskid}">${newtask.task}</label>
+</li>`
 
 }
-

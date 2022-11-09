@@ -1,37 +1,90 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px;
-    background-color: #e1e3ea;
-    height: 91vh;
-    font-family: sans-serif;
-  }
-
-.heading{
-    width: 60%;
-    background-color: bisque;
-    border-radius: 10px;
-    
-}
-.heading span{
-    display: flex;
-    justify-content: center;
-    font-size: 25px;
-    
-}
-
-#name{
-    font-size: 20px;
-    width: 100%;
-    border-radius: 20px;
-    background-color: antiquewhite;
-    text-align: center;
-}
-
-.greeting{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+.name{
     display: flex;
     justify-content: center;
     column-gap: 10px;
-    padding: 10px;
+    align-items: stretch;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body{
+    background-color: #D8D9CF;
+    font-family: 'Montserrat', sans-serif;
+    color: #6F38C5;
+}
+.container{
+    margin-top: 30px;
+    background-color: #EDEDED;
+    padding: 20px;
+    min-height: 500px;
+    background-color: #EDEDED;
+}
+#name{
+    border: 2px solid #D8D9CF;
+    border-radius: 15px;
+    height: 40px;
+    text-align: center;
+}
+#name:focus{
+    background-color: #EDEDED;
+}
+
+.material-symbols-outlined{
+    cursor: pointer;
+}
+.heading{
+    font-weight: bolder;
+    font-size: 25px;
+    color: #6F38C5;
+    text-align: center;
+}
+.innerheading{
+    font-weight: 500;
+}
+
+#taskinput{
+    width: 70%;
+    margin-top: 10px;
+    border: 1px solid #6F38C5;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #EDEDED;
+    text-align: center;
+}
+#taskinput:focus{
+    background-color: whitesmoke;
+}
+
+.material-symbols-outlined{
+    font-size: 35px;
+    top: 5px;
+    position: relative;
+}
+
+.inputfeild{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.tododisplay{
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+}
+.checkbox{
+    width: 18px;
+    height: 18px;
+}
+.list{
+    display: flex;
+    column-gap: 10px;
+    font-size: 20px;
+    align-items: center;
 }
