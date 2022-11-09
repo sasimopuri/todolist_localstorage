@@ -85,6 +85,17 @@ function changetaskdom(newtask){
     }
     checkbox.onclick=()=>{changechecklist(labelid,taskid)}
 
+    let deleteiconContainer = document.createElement("div");
+    deleteiconContainer.classList.add("delete-icon-container");
+    taskli.appendChild(deleteiconContainer);
+    let deleteIcon = document.createElement("span");
+    deleteIcon.classList.add("material-symbols-outlined"); 
+    deleteIcon.id='delete' 
+    deleteIcon.textContent=("delete")
+    deleteIcon.onclick=()=>{
+        ondelete(taskliid)
+    }
+    deleteiconContainer.appendChild(deleteIcon);
 //     ultag.innerHTML+=`<li class="${taskliid} list" id="taskli+uniqueid">
 //     <input type="checkbox" id="${'checkbox'+uniqueid}" class="checkbox">
 //     <label for="${taskid}" class="label">${newtask.task}</label>
@@ -112,9 +123,23 @@ function changechecklist(labelid,taskid)
     else{
         selectedtask.checkedtask=false;
     }
-    tasks[taskindex]=selectedtask;
-    console.log(tasks)
-    // localStorage.removeItem(tasks)
+    tasks[taskindex]=selectedtask;  
     localStorage.setItem('task',JSON.stringify(tasks))
     
+}
+
+function ondelete(taskid){
+    let todoItem = document.getElementById(taskid);
+    console.log(todoItem);
+    ultag.removeChild(todoItem);
+
+    let deleteElementIndex = tasks.findIndex(function(eachTodo) {
+        let eachTodoId = "task" + eachTodo.taskid;
+        if (eachTodoId === todoId) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+    tasks.splice(deleteElementIndex, 1);
 }

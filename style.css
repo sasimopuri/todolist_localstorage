@@ -95,14 +95,12 @@ body{
 }
 
 .tododisplay{
-   
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-right: 75px;
     padding-top: 5px;
-    
     
 }
 .checkbox{
@@ -136,4 +134,13 @@ body{
 
 .label:hover{
     cursor: pointer;
+}
+
+
+
+#delete{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    text-align: end;
 }
